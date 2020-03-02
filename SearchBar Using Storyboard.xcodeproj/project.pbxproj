@@ -13,6 +13,7 @@
 		2A2B3124240D22D7001921E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A2B3122240D22D7001921E2 /* Main.storyboard */; };
 		2A2B3126240D22DB001921E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A2B3125240D22DB001921E2 /* Assets.xcassets */; };
 		2A2B3129240D22DB001921E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A2B3127240D22DB001921E2 /* LaunchScreen.storyboard */; };
+		2A2B3131240D2B83001921E2 /* DataModelStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B3130240D2B83001921E2 /* DataModelStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2A2B3125240D22DB001921E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A2B3128240D22DB001921E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A2B312A240D22DB001921E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A2B3130240D2B83001921E2 /* DataModelStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelStruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				2A2B311C240D22D7001921E2 /* AppDelegate.swift */,
 				2A2B311E240D22D7001921E2 /* SceneDelegate.swift */,
 				2A2B3120240D22D7001921E2 /* ViewController.swift */,
+				2A2B3130240D2B83001921E2 /* DataModelStruct.swift */,
 				2A2B3122240D22D7001921E2 /* Main.storyboard */,
 				2A2B3125240D22DB001921E2 /* Assets.xcassets */,
 				2A2B3127240D22DB001921E2 /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A2B3131240D2B83001921E2 /* DataModelStruct.swift in Sources */,
 				2A2B3121240D22D7001921E2 /* ViewController.swift in Sources */,
 				2A2B311D240D22D7001921E2 /* AppDelegate.swift in Sources */,
 				2A2B311F240D22D7001921E2 /* SceneDelegate.swift in Sources */,

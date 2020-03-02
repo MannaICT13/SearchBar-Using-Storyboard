@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -14,9 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    var arrayOfName = ["Manna","Munna","Lalon","Limon","Shaon"]
-    var searchArray = [String]()
-    var searching : Bool = false
+    var arrayOfData = [DataModelStruct]()
+    
+   // var searchArray = [String]()
+   // var searching : Bool = false
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -27,10 +29,60 @@ class ViewController: UIViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         createSearchBar()
-      
+        getJsonData()
+        
+        
+
        
     }
+    
+    
 
+    
+    func getJsonData(){
+        
+        
+        let url = URL(string: "https://restcountries.eu/rest/v2/all")
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            
+            do{
+                if error == nil{
+                    
+                    self.arrayOfData = try JSONDecoder().decode([DataModelStruct].self, from: data!)
+                 
+                    DispatchQueue.main.async {
+                        
+                        self.tableView.reloadData()
+                        
+                    }
+                
+                }
+               
+            }catch{
+                
+                print(error.localizedDescription)
+            }
+            
+          
+            
+            
+        }.resume()
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
 
 }
 
@@ -45,24 +97,33 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        if searching {
+      /*  if searching {
             return searchArray.count
         }
         else{
-             return arrayOfName.count
+             return arrayOfData.count
         }
+ */
+        return arrayOfData.count
        
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        
+       /*
         if searching{
             cell?.textLabel?.text = searchArray[indexPath.row]
         }else{
             
-              cell?.textLabel?.text = arrayOfName[indexPath.row]
+            cell?.textLabel?.text = arrayOfName[indexPath.row]
         }
-      
+      */
+        
+        cell?.textLabel?.text = arrayOfData[indexPath.row].name
+      //  cell?.textLabel?.text = arrayOfData[indexPath.row].capital
         
         return cell!
         
@@ -89,17 +150,27 @@ extension ViewController : UISearchBarDelegate,UISearchControllerDelegate,UISear
         
         guard let searchText = searchController.searchBar.text  else {return}
         
-        if searchText == ""{
-            //
-        }else{
+        if searchText != ""{
+         
+             arrayOfData = arrayOfData.filter{
+                
+                
+                $0.name.localizedCaseInsensitiveContains(searchText) //|| //$0.capital.localizedCaseInsensitiveContains(searchText)
+              
+            }
             
-            //
-            
+        
         }
+        if searchText == ""{
+            getJsonData()
+        }
+        
+        tableView.reloadData()
         
         
     }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+   
+    /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         searchArray = arrayOfName.filter({
             $0.prefix(searchText.count) == searchText ||
@@ -109,7 +180,7 @@ extension ViewController : UISearchBarDelegate,UISearchControllerDelegate,UISear
         tableView.reloadData()
         
     }
-    
+    */
     
 
     
