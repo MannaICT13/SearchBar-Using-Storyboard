@@ -10,11 +10,46 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    var arrayOfName = ["Manna","Munna","Lalon","Limon","Shaon"]
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+       
     }
 
 
+}
+
+
+
+
+extension ViewController : UITableViewDelegate,UITableViewDataSource{
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+        arrayOfName.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        cell?.textLabel?.text = arrayOfName[indexPath.row]
+        return cell!
+        
+    }
+    
+    
+    
 }
 
