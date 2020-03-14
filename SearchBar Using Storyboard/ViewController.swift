@@ -150,25 +150,33 @@ extension ViewController : UISearchBarDelegate,UISearchControllerDelegate,UISear
         
         guard let searchText = searchController.searchBar.text  else {return}
         
-        if searchText != ""{
-         
-             arrayOfData = arrayOfData.filter{
-                
-                
-                $0.name.localizedCaseInsensitiveContains(searchText) //|| //$0.capital.localizedCaseInsensitiveContains(searchText)
-              
-            }
+        if searchText == ""{
+           getJsonData()
+            
             
         
+        }else{
+            arrayOfData = arrayOfData.filter{
+                
+                         $0.name.localizedCaseInsensitiveContains(searchText) //||ext //$0.capital.localizedCaseInsensitiveContains(searchText)
+                         
+                       }
+            
         }
-        if searchText == ""{
-            getJsonData()
-        }
+    
         
         tableView.reloadData()
         
         
     }
+   
+    
+    
+    
+    
+    
+    
+    
    
     /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
